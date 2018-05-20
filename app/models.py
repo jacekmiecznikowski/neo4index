@@ -3,7 +3,7 @@ from passlib.hash import bcrypt
 from datetime import datetime
 from dateutil import relativedelta
 from statistics import median
-import uuid, math
+import uuid, math, os
 graphenedb_url = os.environ.get("GRAPHENEDB_BOLT_URL")
 graphenedb_user = os.environ.get("GRAPHENEDB_BOLT_USER")
 graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
