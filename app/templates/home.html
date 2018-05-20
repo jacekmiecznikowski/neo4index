@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}	
+<section class="neo4index-cover" id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-100 align-items-center text-center">
+      <div class="col-sm">
+        <div class="neo4index-text">
+          <h1 class="neo4index-heading text-white mb-4">neo4index</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal">Flask and Neo4j bibliometrics app by <u>Jacek Miecznikowski</u>.</p>
+          </div>
+          {% if session.username %}
+            <p><a href="{{ url_for('logout') }}" class="btn btn-primary btn-outline-white mb-2">Log out</a></p>
+          {% else %}
+            <p><a href="{{ url_for('login') }}" class="btn btn-primary mr-2 mb-2">Log in</a><a href="{{ url_for('register') }}" class="btn btn-primary btn-outline-white mb-2">Register</a></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>	
+{% if get_flashed_messages(): %}
+<div class="container">
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-info mb-5 mt-5" role="alert">
+      {{ message }} 
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

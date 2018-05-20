@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- By Jacek Miecznikowski  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1440 612" style="enable-background:new 0 0 1440 612;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Rectangle_1_);}
+	.st1{fill:url(#Triangle_1_);}
+</style>
+<title>neo4index cover</title>
+<desc>Created by Jacek Miecznikowski.</desc>
+<g id="Page-1">
+	<g id="Desktop-HD">
+		
+			<linearGradient id="Rectangle_1_" gradientUnits="userSpaceOnUse" x1="-78.9476" y1="6615.2554" x2="-77.9276" y2="6614.2451" gradientTransform="matrix(1440 0 0 -617 113681 4081614)">
+			<stop  offset="0" style="stop-color:#3F244F"/>
+			<stop  offset="1" style="stop-color:#1BCEDE"/>
+		</linearGradient>
+		<rect id="Rectangle" class="st0" width="1440" height="617"/>
+		
+			<linearGradient id="Triangle_1_" gradientUnits="userSpaceOnUse" x1="-79.403" y1="6616.8809" x2="-78.383" y2="6615.8706" gradientTransform="matrix(1227.0038 -85.8005 -52.3871 -749.1706 444383.9063 4950456)">
+			<stop  offset="0" style="stop-color:#3F244F;stop-opacity:0.2007"/>
+			<stop  offset="0.9167" style="stop-color:#1BCEDE;stop-opacity:0.256"/>
+			<stop  offset="1" style="stop-color:#1BCEDE;stop-opacity:0.261"/>
+		</linearGradient>
+		<polygon id="Triangle" class="st1" points="1078.5,-53.1 1744.4,653.2 517.4,739 		"/>
+	</g>
+</g>
+</svg>

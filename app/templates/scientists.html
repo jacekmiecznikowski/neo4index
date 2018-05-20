@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover"  id="particles-js">
+<div class="container">
+  <div class="row neo4index-vh-50 align-items-center text-left">
+    <div class="col-sm">
+      <div class="neo4index-text pt-5">
+        <h1 class="neo4index-heading text-white mb-4">Scientists</h1>
+        <div class="neo4index-subheading mb-5">
+          <p class="h4 font-weight-normal">View all scientists stored in Neo4j graph database.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="neo4index-section">
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-dark" >
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for scientist in scientists %}
+            <tr>
+              <th>{{scientist['id']}}</th>
+              <td>{{scientist['first_name']}}</td>
+              <td>{{scientist['last_name']}}</td>
+              <td><a href="{{ url_for('scientist',scientist_id=scientist['id']) }}">View</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "pagination.html" %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover" id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-100 align-items-center text-left">
+      <div class="col-sm">
+        <div class="neo4index-text pt-5">
+          <h1 class="neo4index-heading text-white mb-4">Error 404... Page not found.</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal">The page you are looking for does not exists or another error occured.</p>
+            <a class="btn btn-primary mt-5" href="{{ url_for('index') }}">Return to the homepage.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

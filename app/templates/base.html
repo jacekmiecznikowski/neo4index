@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>neo4index - Flask and Neo4j bibliometrics app </title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/latexit.js') }}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark neo4index-navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('index') }}">neo4index</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#neo4index-nav" aria-controls="neo4index-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="neo4index-nav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="{{ url_for('articles') }}" class="nav-link">Articles</a></li>
+        <li class="nav-item"><a href="{{ url_for('scientists') }}" class="nav-link">Scientists</a></li>
+        <li class="nav-item"><a href="{{ url_for('db') }}" class="nav-link">Database operations</a></li>
+        {% if session.username %}
+          <li class="nav-item neo4index-cta neo4index-seperator"><span class="nav-link">Welcome, {{ session.username }}!</span></li>
+          <li class="nav-item neo4index-cta"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+        {% else %}
+          <li class="nav-item neo4index-cta neo4index-seperator"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+          <li class="nav-item neo4index-cta"><a href="{{ url_for('register') }}" class="nav-link">Register</a></li>
+        {% endif %}
+      </ul>   
+    </div>
+  </div>
+</nav>
+{% block content %}
+{% endblock %}
+<footer class="neo4index-footer">
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-lg mb-6">
+          <h2 class="neo4index-heading">
+            <a href="{{ url_for('index') }}">neo4index</a>
+          </h2>
+        </div>
+        <div class="col-lg">
+          <div class="neo4index-footer-widget mb-6">
+            <h2 class="neo4index-heading-2">About application</h2>
+            <p>This application is a part of Master's Thesis - "Badanie dorobku naukowego na podstawie danych grafowych" by Jacek Miecznikowski. App evaluates scientific reasearch impact using author-level metrics (h-index and more). 
+              <a href="{{ url_for('about') }}">Learn more</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg">
+          <div class="neo4index-footer-widget mb-6">
+            <h2 class="neo4index-heading-2">Related links</h2>
+            <ul class="list-unstyled">
+              <li><a href="https://arxiv.org/" class="py-2 d-block">arXiv.org e-Print archive</a></li>
+              <li><a href="https://neo4j.com/" class="py-2 d-block">The Neo4j Graph Platform</a></li>
+              <li><a href="http://flask.pocoo.org/" class="py-2 d-block">Flask (A Python Microframework)</a></li>
+              <li><a href="http://www.uwb.edu.pl/home" class="py-2 d-block">University of Bialystok</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="neo4index-footer-widget mb-4">
+        <ul class="neo4index-footer-social list-unstyled float-md-right float-lft">
+          <li><a href="https://github.com/jacekmiecznikowski/neo4index"><span class="icon-github"></span></a></li>
+          <li><a href="mailto:jacekmiecznikowski@outlook.com"><span class="icon-mail"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md text-md-right text-left">
+      <p>
+        <small>&copy; <a href="{{ url_for('index') }}">neo4index</a>, 2018. All rights reserved. <br> Project and production <strong><a href="mailto:jacekmiecznikowski@outlook.com">Jacek Miecznikowski</a></strong>
+        </small>
+      </p>
+    </div>
+  </div>
+</div>
+</footer>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

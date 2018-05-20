@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="1080"
+   width="1920"
+   xml:space="preserve"
+   viewBox="0 0 1920 1080"
+   y="0px"
+   x="0px"
+   id="Layer_1"
+   version="1.1"><metadata
+   id="metadata29"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title>neo4index cover</dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs27" />
+<style
+   id="style2"
+   type="text/css">
+	.st0{fill:url(#Rectangle_1_);}
+	.st1{fill:url(#Triangle_1_);}
+</style>
+<title
+   id="title4">neo4index cover</title>
+<desc
+   id="desc6">Created by Jacek Miecznikowski.</desc>
+<g
+   transform="matrix(1.5067,0,0,1.9298989,-228.33759,-49.7835)"
+   id="Page-1">
+	<g
+   id="Desktop-HD">
+		
+			<linearGradient
+   gradientTransform="matrix(1440,0,0,-617,113681,4081614)"
+   y2="6614.2451"
+   x2="-77.927597"
+   y1="6615.2554"
+   x1="-78.947601"
+   gradientUnits="userSpaceOnUse"
+   id="Rectangle_1_">
+			<stop
+   id="stop8"
+   style="stop-color:#3F244F"
+   offset="0" />
+			<stop
+   id="stop10"
+   style="stop-color:#1BCEDE"
+   offset="1" />
+		</linearGradient>
+		<rect
+   style="fill:url(#Rectangle_1_)"
+   y="0"
+   x="0"
+   height="617"
+   width="1440"
+   class="st0"
+   id="Rectangle" />
+		
+			<linearGradient
+   gradientTransform="matrix(1227.0038,-85.8005,-52.3871,-749.1706,444383.91,4950456)"
+   y2="6615.8706"
+   x2="-78.383003"
+   y1="6616.8809"
+   x1="-79.403"
+   gradientUnits="userSpaceOnUse"
+   id="Triangle_1_">
+			<stop
+   id="stop14"
+   style="stop-color:#3F244F;stop-opacity:0.2007"
+   offset="0" />
+			<stop
+   id="stop16"
+   style="stop-color:#1BCEDE;stop-opacity:0.256"
+   offset="0.9167" />
+			<stop
+   id="stop18"
+   style="stop-color:#1BCEDE;stop-opacity:0.261"
+   offset="1" />
+		</linearGradient>
+		<polygon
+   style="fill:url(#Triangle_1_)"
+   points="517.4,739 1078.5,-53.1 1744.4,653.2 "
+   class="st1"
+   id="Triangle" />
+	</g>
+</g>
+</svg>

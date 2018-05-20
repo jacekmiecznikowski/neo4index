@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover" id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-50 align-items-center text-left">
+      <div class="col-sm">
+        <div class="neo4index-text pt-5">
+          <h1 class="neo4index-heading text-white mb-4">Database operations</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal">Here you can calculate indices for every scientist in database.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="neo4index-section">
+  <div class="container">
+    <h2>Indices</h2>
+      <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input" id="csv">
+      <label class="form-check-label" for="csv">Check this if you want to save calculations to CSV file.</label>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="hindex">
+          <div class="card-body">
+            <h5 class="card-title">h-index</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="mquotient">
+          <div class="card-body">
+            <h5 class="card-title">m quotient</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="eindex">
+          <div class="card-body">
+            <h5 class="card-title">e-index</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="mindex">
+          <div class="card-body">
+            <h5 class="card-title">m-index</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="rindex">
+          <div class="card-body">
+            <h5 class="card-title">r-index</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="arindex">
+          <div class="card-body">
+            <h5 class="card-title">ar-index</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 mb-5">
+        <div class="card text-center" id="all">
+          <div class="card-body">
+            <h5 class="card-title">Calculate all indices at once</h5>
+            <h3 id="elapsed" class="card-text">&nbsp;</h3>
+            <div class="loader mb-5 mx-auto"></div>
+            <p class="card-text download">&nbsp;</p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+<script type=text/javascript>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+var $loading = $('.loader').hide();
+$(function() {
+  $('#hindex a').bind('click', function(event) {
+    event.preventDefault();
+    $("#hindex .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'h_index',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#hindex .loader").hide();
+      $("#hindex #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#hindex .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/h_index.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#mquotient a').bind('click', function(event) {
+    event.preventDefault();
+    $("#mquotient .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'm_quotient',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#mquotient .loader").hide()
+      $("#mquotient #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#mquotient .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/m_quotient.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#eindex a').bind('click', function(event) {
+    event.preventDefault();
+    $("#eindex .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'e_index',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#eindex .loader").hide();
+      $("#eindex #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#eindex .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/e_index.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#mindex a').bind('click', function(event) {
+    event.preventDefault();
+    $("#mindex .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'm_index',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#mindex .loader").hide();
+      $("#mindex #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#mindex .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/m_index.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#rindex a').bind('click', function(event) {
+    event.preventDefault();
+    $("#rindex .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'r_index',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#rindex .loader").hide();
+      $("#rindex #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#rindex .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/r_index.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#arindex a').bind('click', function(event) {
+    event.preventDefault();
+    $("#arindex .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'ar_index',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#arindex .loader").hide();
+      $("#arindex #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#arindex .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/ar_index.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+  $('#all a').bind('click', function(event) {
+    event.preventDefault();
+    $("#all .loader").show();
+    $.getJSON($SCRIPT_ROOT + '/_bulk', {
+      method: 'all',
+      csv: $("#csv").is(':checked')
+    }, function(data) {
+      $("#all .loader").hide();
+      $("#all #elapsed").text(data.elapsed_time+" s");
+      if($("#csv").is(':checked')) {
+        $("#all .download").wrapInner("<a download target='_blank' href='"+ "{{ url_for('static', filename='download/all.csv') }}"+"'>Download</a>")
+      }
+    });
+    return false;
+  });
+});
+</script>
+{% endblock %}

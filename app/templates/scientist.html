@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover"  id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-50 align-items-center text-left">
+      <div class="col-sm">
+        <div class="neo4index-text pt-5">
+          <h1 class="neo4index-heading text-white mb-5">{{ scientist['first_name'] }} {{ scientist['last_name'] }}</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal"> Author of {{ articles['data'] | length }}  publications</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="neo4index-section">
+  <div class="container">
+    <h2>Indices</h2>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="hindex">
+          <div class="card-body">
+            <h5 class="card-title">h-index</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="mquotient">
+          <div class="card-body">
+            <h5 class="card-title">m quotient</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="eindex">
+          <div class="card-body">
+            <h5 class="card-title">e-index</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <div class="card text-center" id="mindex">
+          <div class="card-body">
+            <h5 class="card-title">m-index</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mb-5">
+        <div class="card text-center" id="rindex">
+          <div class="card-body">
+            <h5 class="card-title">r-index</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-5">
+        <div class="card text-center" id="arindex">
+          <div class="card-body">
+            <h5 class="card-title">ar-index</h5>
+            <h3 id="result" class="card-text">&nbsp;</h3>
+            <p id="elapsed" class="card-text"><small>&nbsp;</small></p>
+            <a href="" class="btn btn-primary">Calculate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2>Publications</h2>
+    <div id="accordion" class="mb-3">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Author published {{ articles['data'] | length }} times.
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            {% for publication in articles['data'] %}
+              <a class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+<script type=text/javascript>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+$(function() {
+  $('#hindex a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_hindex', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#hindex #result").text(data.result);
+      $("#hindex #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+  $('#mquotient a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_mquotient', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#mquotient #result").text(data.result);
+      $("#mquotient #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+  $('#eindex a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_eindex', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#eindex #result").text(data.result);
+      $("#eindex #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+  $('#mindex a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_mindex', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#mindex #result").text(data.result);
+      $("#mindex #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+  $('#rindex a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_rindex', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#rindex #result").text(data.result);
+      $("#rindex #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+  $('#arindex a').bind('click', function(event) {
+    event.preventDefault();
+    $.getJSON($SCRIPT_ROOT + '/_arindex', {
+      id: '{{ scientist.id }}'
+    }, function(data) {
+      $("#arindex #result").text(data.result);
+      $("#arindex #elapsed").text(data.elapsed_time+" s");
+    });
+    return false;
+  });
+});
+</script>
+{% endblock %}

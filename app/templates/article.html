@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover" id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-75 align-items-center text-left">
+      <div class="col-sm">
+        <div class="neo4index-text pt-5">
+          <h1 class="neo4index-heading text-white mb-5">{{ article['article.title'] }}</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal">Article published by: 
+                {% for scientist in article['scientists'] %}
+                  <a class="text-white" href="{{ url_for('scientist',scientist_id=scientist['id']) }}">{{scientist['data']['first_name']}} {{scientist['data']['last_name']}}</a>;
+                {% endfor %}
+            </p>
+            <p class="h4 font-weight-normal">Categories: 
+                {% for category in categories['data'] %}
+                  {{category.name }};
+                {% endfor %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="neo4index-section">
+  <div class="container">
+    <h2>Abstract</h2>
+    <p>{{ article['article.abstract'] }}</p>
+    <h2>Date</h2>
+    <p>{{ article['article.created'] }}</p>
+    <h2>Citations</h2>
+      <div id="accordion" class="mb-3">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Outgoing citations ({{outgoing['data']|length}})
+              </button>
+            </h5>
+          </div>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              {% for publication in outgoing['data'] %}
+                <a class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Ingoing citations ({{ingoing['data']|length}})
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            {% for publication in ingoing['data'] %}
+              <a class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
+            {% endfor %}        
+          </div>
+        </div>
+      </div>
+    </div>  
+    <h2>ArXiv URL</h2>
+    <p><a href="{{ article['article.url'] }}">{{ article['article.url'] }}</a></p>
+  </div>
+</section>
+{% endblock %}

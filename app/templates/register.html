@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %} 
+<section class="neo4index-cover"  id="particles-js">
+  <div class="container">
+    <div class="row neo4index-vh-50 align-items-center text-left">
+      <div class="col-sm">
+        <div class="neo4index-text pt-5">
+          <h1 class="neo4index-heading text-white mb-4">Register new account</h1>
+          <div class="neo4index-subheading mb-5">
+            <p class="h4 font-weight-normal">Only registered users are allowed to use this application.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="neo4index-section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form action="{{ url_for('register') }}" method="post" class="neo4index-form mb-5 {% if form.errors|length > 0 %} is-invalid {% endif %}">
+        {{ form.hidden_tag() }}
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                {{ form.first_name.label }}
+                {% if form.first_name.errors|length > 0 %}
+                  {{ form.first_name(class="form-control is-invalid") }}
+                {% elif form.errors|length > 0 or get_flashed_messages() %}
+                  {{ form.first_name(class="form-control is-valid") }}
+                {% else %}
+                  {{ form.first_name(class="form-control") }}
+                {% endif %}
+                <div class="invalid-feedback">
+                  {% for error in form.first_name.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="valid-feedback">
+                    <p>Looks good!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                {{ form.last_name.label }}
+                {% if form.last_name.errors|length > 0 %}
+                  {{ form.last_name(class="form-control is-invalid") }}
+                {% elif form.errors|length > 0 or get_flashed_messages() %}
+                  {{ form.last_name(class="form-control is-valid") }}
+                {% else %}
+                  {{ form.last_name(class="form-control") }}
+                {% endif %}
+                <div class="invalid-feedback">
+                  {% for error in form.last_name.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="valid-feedback">
+                    <p>Looks good!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            {{ form.username.label }}
+            {% if form.username.errors|length > 0 or get_flashed_messages() %}
+              {{ form.username(class="form-control is-invalid") }}
+            {% elif form.errors|length > 0 %}
+              {{ form.username(class="form-control is-valid") }}
+            {% else %}
+              {{ form.username(class="form-control") }}
+            {% endif %}
+            <div class="invalid-feedback">
+              {% for error in form.username.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+              {% for message in get_flashed_messages() %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+            <div class="valid-feedback">
+                <p>Looks good!</p>
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            {{ form.password.label }}
+            {% if form.password.errors|length > 0 %}
+              {{ form.password(class="form-control is-invalid") }}
+            {% else %}
+              {{ form.password(class="form-control") }}
+            {% endif %}            
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

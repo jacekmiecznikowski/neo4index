@@ -1,0 +1,49 @@
+<nav aria-label="Pagination">
+  <ul class="pagination justify-content-center"> 
+    <li class="page-item {% if page == 1 %} disabled {% endif %}">
+      <a class="page-link" href="?page=1" tabindex="-1">First page</a>
+    </li>
+    <li class="page-item {% if page == 1 %} disabled {% endif %}">
+      <a class="page-link" href="?page={{page-1}}" tabindex="-1">Previous</a>
+    </li>
+    {% if page > 3 %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page-3}}">{{page-3}}</a>
+        </li>
+    {% endif %}
+    {% if page > 2 %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{page-2}}">{{page-2}}</a>
+    </li>
+    {% endif %}
+    {% if page > 1 %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page-1}}">{{page-1}}</a>
+        </li>
+    {% endif %}
+    <li class="page-item active">
+        <a class="page-link" href="?page={{page}}">{{page}}</a>
+    </li>
+    {% if page <= pages_count -1 %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page+1}}">{{page+1}}</a>
+        </li>
+    {% endif %}
+    {% if page <= pages_count -2 %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page+2}}">{{page+2}}</a>
+        </li>
+    {% endif %}
+    {% if page <= pages_count -3 %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page+3}}">{{page+3}}</a>
+        </li>
+    {% endif %}
+    <li class="page-item {% if page >= pages_count %} disabled {% endif %}">
+      <a class="page-link" href="?page={{page+1}}">Next</a>
+    </li>
+    <li class="page-item {% if page >= pages_count %} disabled {% endif %}">
+      <a class="page-link" href="?page={{ pages_count }}" tabindex="-1">Last page</a>
+    </li>
+  </ul>
+</nav>
