@@ -3,12 +3,8 @@ from passlib.hash import bcrypt
 from datetime import datetime
 from dateutil import relativedelta
 from statistics import median
-import uuid, math, os
-graphenedb_url = os.environ.get("GRAPHENEDB_BOLT_URL")
-graphenedb_user = os.environ.get("GRAPHENEDB_BOLT_USER")
-graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
-graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bolt = True, secure = True, http_port = 24789, https_port = 24780)
-#graph=Graph(user='neo4j', password='password')
+import uuid, math
+graph=Graph(user='neo4j', password='password')
 
 
 class User:
@@ -23,7 +19,7 @@ class User:
 
 	def register(self, password):
 		if not self.find():
-			user = Node("User", username=self.username, firstname=self.firstname, lastname=self.lastname, password=password)
+			user = Node("User", username=self.username, firstname=self.firstname, lastname=self.lastname, password=bcrypt.encrypt(password))
 			graph.create(user)
 			return True
 		return False
@@ -32,7 +28,7 @@ class User:
 		user = self.find()
 		if not user:
 			return False
-		return password == user['password']
+		return bcrypt.verify(password, user["password"])
 
 class Article:
 	def __init__(self, article_id):
