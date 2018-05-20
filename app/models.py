@@ -23,7 +23,7 @@ class User:
 
 	def register(self, password):
 		if not self.find():
-			user = Node("User", username=self.username, firstname=self.firstname, lastname=self.lastname, password=bcrypt.encrypt(password))
+			user = Node("User", username=self.username, firstname=self.firstname, lastname=self.lastname, password=password)
 			graph.create(user)
 			return True
 		return False
@@ -32,7 +32,7 @@ class User:
 		user = self.find()
 		if not user:
 			return False
-		return bcrypt.verify(password, user["password"])
+		return password == user['password']
 
 class Article:
 	def __init__(self, article_id):
