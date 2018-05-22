@@ -121,8 +121,11 @@ def get_scientists_count():
 	MATCH(scientist:Scientist) RETURN count(*) as num
 	"""
 	return graph.run(query).data()[0].get("num")
-
-	
+def get_citations_count():
+	query = """
+	MATCH(a:Article)-[cit:CITES]->(b:Article) RETURN count(cit) as num
+	"""
+	return graph.run(query).data()[0].get("num")	
 def h_index(scientist_id):
 	scientist_id = int(scientist_id)
 	query = """
@@ -155,7 +158,7 @@ def m_quotient(scientist_id):
 	with article
 	MATCH (article)<-[citing:CITES]-(:Article)
 	WITH article, COUNT(citing) as citation
-    RETURN citation ORDER BY citation ASC
+    RETURN article.created as created, citation ORDER BY citation ASC
 	"""
 	result = graph.run(query, scientist_id=scientist_id).data()
 	citations = [x['citation'] for x in result]
@@ -167,18 +170,18 @@ def m_quotient(scientist_id):
 			r = mid - 1
 		else:
 			l = mid + 1
-	query = """
-	MATCH (scientist:Scientist)-[:PUBLISHED]->(article:Article)
-	WHERE ID(scientist) = {scientist_id}
-	RETURN article['created'] as created ORDER BY created ASC LIMIT 1
-	"""
-	result = graph.run(query, scientist_id=scientist_id).data()[0].get('created')
-	first = datetime.strptime(result, '%Y-%m-%d')
-	now = datetime.now()
-	y = relativedelta.relativedelta(now, first).years
-	if y == 0:
-		y = 1
-	return round((n-l)/y,4)
+
+	dates = [x['created'] for x in result]
+	dates.sort(key=lambda x: x)
+	if dates:
+		first = datetime.strptime(dates[0], '%Y-%m-%d')
+		now = datetime.now()
+		y = relativedelta.relativedelta(now, first).years
+		if y == 0:
+			y = 1
+		return round((n-l)/y,4)
+	else:
+		return round(0,4)
 
 def e_index(scientist_id):
 	scientist_id = int(scientist_id)

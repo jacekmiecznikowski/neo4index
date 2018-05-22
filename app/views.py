@@ -19,7 +19,6 @@ def about():
 	data = {}
 	data['articles'] = get_articles_count()
 	data['scientists'] = get_scientists_count()
-	data['relationships'] = get_articles_count()
 	return render_template('about.html', data=data)
 
 @app.route("/register", methods=["GET", "POST"])
