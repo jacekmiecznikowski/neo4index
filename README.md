@@ -24,7 +24,7 @@ FLASK_APP=run.py FLASK_DEBUG=1 flask run
 ## See also
 * [oai-harvest](https://github.com/jacekmiecznikowski/oai-harvest) - A harvester used to collect records from arXiv via OAI2.
 * [figshare](https://figshare.com/s/3378e00e2362f5ac5e4d) - Datasets used in this project
-* [arXiv](https://github.com/jacekmiecznikowski/arXivCSV) - Script manipulates arXiv OAI-PMH files to CSV format
+* [arXivCSV](https://github.com/jacekmiecznikowski/arXivCSV) - This script manipulates arXiv OAI-PMH files to CSV format
 * [arxivCite](https://github.com/jacekmiecznikowski/arxivCite) - Citation simulator for dataset used in this application
 
 
