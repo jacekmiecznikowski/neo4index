@@ -42,7 +42,7 @@
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               {% for publication in outgoing['data'] %}
-                <a class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
+                <a data-toggle="tooltip" data-placement="right" title="{{publication['title']}}" class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
               {% endfor %}
             </div>
           </div>
@@ -58,7 +58,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
             {% for publication in ingoing['data'] %}
-              <a class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
+              <a data-toggle="tooltip" data-placement="right" title="{{publication['title']}}" class="badge badge-primary" href="{{ url_for('article',article_id=publication['id']) }}">{{ publication['id'] }}</a>
             {% endfor %}        
           </div>
         </div>
