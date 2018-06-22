@@ -7,7 +7,7 @@ Flask &amp; Neo4j citation index calculation app
 Citations are very important for the world of science. Scientific achievements of researchers are often estimated based on research carried out on bibliographic lists. Scientists who are cited more often are considered the most valuable. The evolution of the Internet requires the development of information storage methods, because data is constantly increasing in quantity. Non-relational databases have been gaining popularity over the last years, because traditional database solutions, despite being a standard, do not necessarily cope well with storing and processing huge amounts of connected data. The graph model of data representation becomes noteworthy in such cases. This work combines both issues -- the evaluation of scientific achievements using bibliometric indicators and the use of graph databases to store and process connected data.
 
 
-## Instalation
+## Installation
 I recommend using virtualenv. 
 
 ```
